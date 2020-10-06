@@ -1,6 +1,5 @@
-print('Enter the English message to translate in to Pig Lating:')
-message = input()
-
+print('Enter the english message to translate')
+message = 'amar sonar bangla ami tomay valobasi 1000'
 VOWELS = ('a', 'e', 'i', 'o', 'u', 'y')
 
 pigLatin = []
@@ -12,24 +11,39 @@ for word in message.split():
     if len(word) == 0:
         pigLatin.append(prefixNonLetters)
         continue
+    
+
     suffixNonLetters = ''
     while not word[-1].isalpha():
         suffixNonLetters += word[-1]
         word = word[:-1]
+
     wasUpper = word.isupper()
     wasTitle = word.istitle()
-    word = word.lower() 
-    prefixConstants = ''
+    
+    word = word.lower()
+    
+    prefixConsonents = ''
     while len(word) > 0 and not word[0] in VOWELS:
-        prefixConstants += word[0]
-        word = word[1:] 
-    if prefixConstants != '':
-        word += prefixConstants + 'ay'
+        prefixConsonents += word[0]
+        word = word[1:]
+    
+    if prefixConsonents != '':
+        word += prefixConsonents + 'ay'
     else:
-        word += 'yay'
+        word + 'yay'
+        
     if wasUpper:
         word = word.upper()
     if wasTitle:
-        word = word.istitle() 
+        word = word.title()
+        
     pigLatin.append(prefixNonLetters + word + suffixNonLetters)
+    
 print(' '.join(pigLatin))
+         
+        
+        
+        
+    
+        
