@@ -14,15 +14,16 @@ def backupToZip(folder):
             break
         number += 1
 
-        # Create the zip file.
-        print(f'Creating {zipFilename}...')
-        backupZip = zipfile.ZipFile(zipFilename, 'w')
+    # Create the zip file.
+    print(f'Creating {zipFilename}...')
+    backupZip = zipfile.ZipFile(zipFilename, 'w')
 
     # Walk the entire folder tree and compress the files in each folder.
     for foldername, subfolders, filenames in os.walk(folder):
-        print(f'Adding files in {folder}...')
+        print(f'Adding files in {os.path.basename(foldername)}...')
         # Add the current folder to the zip file
         backupZip.write(foldername)
+        print(foldername)
 
         # add all the files in this folder to the zip file.
         for filename in filenames:
@@ -32,5 +33,5 @@ def backupToZip(folder):
             backupZip.write(os.path.join(foldername,filename))
     backupZip.close()
 
-from pathlib import Path
+
 backupToZip('sompod')
